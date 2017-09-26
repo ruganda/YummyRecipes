@@ -63,6 +63,13 @@ class Recipe_categoryTest(unittest.TestCase):
     def test_delete_recipe_not_found(self):
           self.assertEqual(self.recipes.delete_recipe(
             "katogo"), "No recipe to delete")
+    def test_recipe_item(self):
+        self.recipes.add_recipe("katogo")
+        self.assertEqual(self.recipes.delete_recipe("katogo"), "recipe deleted")
+
+    def test_view_recipe(self):
+        self.assertEqual(self.recipes.view_recipe(" "), "no recipe found")
+
 
 
     
