@@ -39,7 +39,11 @@ class Recipe_category:
             self.recipes.append(recipe)
             return "recipe added succesfully"
         return "recipe already exists"
-
+    def edit_recipe(self,newrecipe,oldrecipe):
+        if oldrecipe in self.recipes:
+            self.recipes= [newrecipe for oldrecipe in self.recipes]
+            return "recipe added successfully"
+        return "no recipe to edit"
 
 
 
