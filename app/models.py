@@ -17,5 +17,10 @@ class User:
             return "recipe_category edited succesfully"
         return "recipe_category not found"
 
+    def delete_recipe_category(self,recipe_category):
+        if recipe_category in self.recipe_categories:
+            self.recipe_categories.remove(recipe_category)
+            return "recipe_category deleted"
+        return "recipe_category not found"
 
 
