@@ -10,4 +10,9 @@ class UserTest(unittest.TestCase):
     
     def test_created_user(self):
         self.assertIsInstance(self.user, User, 'User not created')
+    
+def test_add_recipe_category_category_added(self):
+        self.assertEqual(self.user.add_recipe_category("dinner"),
+                        "recipe category is added succesfully")
+    
 
