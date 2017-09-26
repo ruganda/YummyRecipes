@@ -34,6 +34,9 @@ class UserTest(unittest.TestCase):
         self.user.add_recipe_category("lunch recipes")
         self.assertEqual(self.user.delete_recipe_category("lunch recipes"),
                          "recipe_category deleted")
+
+    def test_view_recipe_category(self):
+        self.assertEqual(self.user.view_recipe_category(" "), "recipe_categories is empty")
     
     
 
