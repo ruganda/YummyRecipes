@@ -49,9 +49,18 @@ def login():
         else:
             error = 'Invalid login'
             return render_template('login.html', error=error)
+@app.route('/index', methods=['GET', 'POST'])
+def index():
+    global recipe_categories
+    if request.method == 'POST':
+        recipe_categories.append(request.form['item'])
+    return render_template('index.html', items=recipe_categories)
+
+
             
     
     return render_template('login.html')
+
 
 
 
