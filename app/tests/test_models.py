@@ -53,6 +53,10 @@ class Recipe_categoryTest(unittest.TestCase):
         self.recipes.add_recipe("pizza")
         self.assertEqual(self.recipes.add_recipe(
             "pizza"), "recipe already exists")
+    def test_edit_recipe_not_found(self):
+        self.assertEqual(self.recipes.edit_recipe(
+            "chicken recipe", "beef recipe"), "no recipe to edit")
+
     
     
 
