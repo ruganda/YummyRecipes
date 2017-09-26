@@ -49,6 +49,10 @@ class Recipe_categoryTest(unittest.TestCase):
 
     def test_add_recipe_added(self):
             self.assertEqual(self.recipes.add_recipe("pillawo"), "recipe added succesfully")
-
-
+    def test_add_recipe_exists(self):
+        self.recipes.add_recipe("pizza")
+        self.assertEqual(self.recipes.add_recipe(
+            "pizza"), "recipe already exists")
+    
+    
 
