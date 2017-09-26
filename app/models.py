@@ -11,6 +11,7 @@ class User:
             self.recipe_categories.append(recipe_category)
             return "recipe category is added succesfully"
         return "recipe category already exists"
+
     def edit_recipe_category(self,newname,oldname):
         if oldname in self.recipe_categories:
             self.recipe_category =[newname for oldname  in self.recipe_categories]
@@ -29,7 +30,7 @@ class User:
         return "recipe_categories is empty"
 
 class Recipe_category:
-        
+    
     def __init__(self,title):
         self.title = title
         self.recipes =[]
@@ -39,11 +40,13 @@ class Recipe_category:
             self.recipes.append(recipe)
             return "recipe added succesfully"
         return "recipe already exists"
+
     def edit_recipe(self,newrecipe,oldrecipe):
         if oldrecipe in self.recipes:
             self.recipes= [newrecipe for oldrecipe in self.recipes]
             return "recipe added successfully"
         return "no recipe to edit"
+    
     def delete_recipe(self,recipe):
         if recipe in self.recipes:
             self.recipes.remove(recipe)
@@ -54,10 +57,12 @@ class Recipe_category:
         for recipe in self.recipes:
             return self.recipes
         return "no recipe found"
+
 class Recipe:
-    
+
     def __init__(self, recipe):
         self.recipe = recipe
+    
 
 class repository(object):
     
@@ -88,12 +93,6 @@ class repository(object):
         recipe_category=[v for v in self.recipe_categories.itervalues()]
         
         return recipe_category
-
-    
-    
-
-
-
 
 
 
