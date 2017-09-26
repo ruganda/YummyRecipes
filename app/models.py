@@ -27,3 +27,11 @@ class User:
         for item in self.recipe_categories:
             return self.recipe_categories
         return "recipe_categories is empty"
+
+class Recipe_category:
+        
+    def __init__(self,title):
+        self.title = title
+        self.recipes =[]
+
+
