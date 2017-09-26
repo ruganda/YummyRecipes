@@ -28,6 +28,31 @@ def register():
         flash('You are now registered and can log in', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
+# User login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = RegisterForm(request.form)
+    password = form.password.data
+    if request.method == 'POST':
+        # Get Form Fields
+        username = str(request.form['username'])
+        password_candidate = str(request.form['password'])
+
+            # Compare Passwords
+        if (password_candidate, password):
+            # Passed
+            session['logged_in'] = True
+            session['username'] = username
+
+            flash('You are now logged in', 'success')
+            return redirect(url_for('index'))
+        else:
+            error = 'Invalid login'
+            return render_template('login.html', error=error)
+            
+    
+    return render_template('login.html')
+
 
 
 
