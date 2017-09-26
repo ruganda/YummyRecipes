@@ -57,6 +57,13 @@ def index():
         return render_template('index.html', items=recipe_categories)
     return render_template('login.html')
 
+@app.route('/remove/<name>')
+def remove_item(name):
+    global recipe_categories
+    if name in recipe_categories:
+        recipe_categories.remove(name)
+    return redirect(url_for('index'))
+
 
 
 
