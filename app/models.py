@@ -11,4 +11,11 @@ class User:
             self.recipe_categories.append(recipe_category)
             return "recipe category is added succesfully"
         return "recipe category already exists"
+    def edit_recipe_category(self,newname,oldname):
+        if oldname in self.recipe_categories:
+            self.recipe_category =[newname for oldname  in self.recipe_categories]
+            return "recipe_category edited succesfully"
+        return "recipe_category not found"
+
+
 
