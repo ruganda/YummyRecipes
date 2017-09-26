@@ -38,6 +38,10 @@ class UserTest(unittest.TestCase):
     def test_view_recipe_category(self):
         self.assertEqual(self.user.view_recipe_category(" "), "recipe_categories is empty")
     
+class Recipe_categoryTest(unittest.TestCase):
+    
+    def setUp(self):
+        self.recipes = Recipe_category("")
     
 
 
