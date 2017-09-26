@@ -60,6 +60,9 @@ class Recipe_categoryTest(unittest.TestCase):
          self.recipes.add_recipe("pizza")
          self.assertEqual(self.recipes.edit_recipe("chicken", "pizza"), "recipe added successfully")
     
+    def test_delete_recipe_not_found(self):
+          self.assertEqual(self.recipes.delete_recipe(
+            "katogo"), "No recipe to delete")
 
 
     
