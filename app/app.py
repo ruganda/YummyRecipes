@@ -49,6 +49,18 @@ def login():
         else:
             error = 'Invalid login'
             return render_template('login.html', error=error)
+
+@app.route('/dashboard')
+def dashboard ():
+    return render_template('index.html', items=recipe_categories)
+
+@app.route('/remove/<name>')
+def remove_item(name):
+    global recipe_categories
+    if name in recipe_categories:
+        recipe_categories.remove(name)
+    return redirect(url_for('index'))
+
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     global recipe_categories
@@ -57,12 +69,7 @@ def index():
         return render_template('index.html', items=recipe_categories)
     return render_template('login.html')
 
-@app.route('/remove/<name>')
-def remove_item(name):
-    global recipe_categories
-    if name in recipe_categories:
-        recipe_categories.remove(name)
-    return redirect(url_for('index'))
+
 
 
 
