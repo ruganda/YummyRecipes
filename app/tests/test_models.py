@@ -78,6 +78,14 @@ class Recipe_categoryTest(unittest.TestCase):
     def test_create_item_instance(self):
         self.assertIsInstance(self.recipe, Recipe, "Failed to create instance")
 
+    class RepositoryTest(unittest.TestCase):
+    def setUp(self):
+        self.users = {}
+        self.recipe_categories ={}
+
+    def test_repository_instantiation(self):
+        self.assertIsInstance(self.users, {},
+                              "Failed to instantiate")
 
     
     
