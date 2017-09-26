@@ -15,4 +15,9 @@ def test_add_recipe_category_category_added(self):
         self.assertEqual(self.user.add_recipe_category("dinner"),
                         "recipe category is added succesfully")
     
+def test_add_recipe_category_name_already_exists(self):
+        self.user.add_recipe_category("dinner")
+        self.assertEqual(self.user.add_recipe_category
+                         ("dinner"),
+                         "recipe category already exists")
 
