@@ -23,3 +23,10 @@ def test_add_recipe_category_name_already_exists(self):
 def test_edit_recipe_category_not_found(self):
         self.assertEqual(self.user.edit_recipe_category("absent", "newtype"),
                          "recipe_category not found")
+ def test_edit_recipe_category_successful(self):
+        self.user.add_recipe_category("Snacks")
+        self.assertEqual(self.user.edit_recipe_category("Snacks","local foods"),"recipe_category not found")
+
+
+
+        
