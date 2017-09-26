@@ -54,12 +54,22 @@ def login():
 def dashboard ():
     return render_template('index.html', items=recipe_categories)
 
+@app.route('/add_recipe_category', methods=['GET', 'POST'])
+def add_recipe_category():
+    global recipe_categories
+    if request.method == 'POST':
+        recipe_categories.append(request.form['item'])
+        return render_template('add_recipe_category.html', items=recipe_categories)
+    return render_template('login.html')
+
+
 @app.route('/remove/<name>')
 def remove_item(name):
     global recipe_categories
     if name in recipe_categories:
         recipe_categories.remove(name)
     return redirect(url_for('index'))
+
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
