@@ -11,6 +11,23 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+# User Register
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+        name = form.name.data
+        email = form.email.data
+        username = form.username.data
+        password = form.password.data
+
+        user = User(username, email, password)
+        # Commit to DB
+        USERS.append(user)
+
+        flash('You are now registered and can log in', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html', form=form)
 
 
 
