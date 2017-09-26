@@ -3,7 +3,7 @@ from flask import Flask, render_template,g, flash, redirect, url_for, session, r
 from models import User,Recipe_category,Recipe,repository
 
 USERS= []
-recipe_categories =["food","ball","categories"]
+recipe_categories =["dinner","supper","lunch"]
 
 app = Flask(__name__)
 
