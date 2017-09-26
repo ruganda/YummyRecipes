@@ -30,6 +30,12 @@ class UserTest(unittest.TestCase):
     def test_delete_recipe_category_not_found(self):
         self.assertEqual(self.user.delete_recipe_category("not exist"), "recipe_category not found")
     
+    def test_delete_recipe_category_deleted(self):
+        self.user.add_recipe_category("lunch recipes")
+        self.assertEqual(self.user.delete_recipe_category("lunch recipes"),
+                         "recipe_category deleted")
+    
+    
 
 
 
