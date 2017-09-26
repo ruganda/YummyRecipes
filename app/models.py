@@ -34,4 +34,13 @@ class Recipe_category:
         self.title = title
         self.recipes =[]
 
+    def add_recipe(self, recipe):
+        if recipe not in self.recipes:
+            self.recipes.append(recipe)
+            return "recipe added succesfully"
+        return "recipe already exists"
+
+
+
+
 
