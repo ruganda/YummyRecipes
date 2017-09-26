@@ -50,6 +50,14 @@ class Recipe_category:
             return "recipe deleted"
         return "No recipe to delete"
 
+    def view_recipe(self,recipe):
+        for recipe in self.recipes:
+            return self.recipes
+        return "no recipe found"
+    
+
+
+
 
 
 
