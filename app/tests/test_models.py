@@ -43,9 +43,12 @@ class Recipe_categoryTest(unittest.TestCase):
     def setUp(self):
         self.recipes = Recipe_category("")
     
-def test_recipe_instantiation(self):
+    def test_recipe_instantiation(self):
         self.assertIsInstance(self.recipes, Recipe_category,
                               "Failed to instantiate")
+
+    def test_add_recipe_added(self):
+            self.assertEqual(self.recipes.add_recipe("pillawo"), "recipe added succesfully")
 
 
 
