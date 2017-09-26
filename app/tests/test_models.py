@@ -7,3 +7,7 @@ class UserTest(unittest.TestCase):
 
     def test_created_user(self):
         self.assertIsInstance(self.user, User, 'User not created')
+    
+    def test_created_user(self):
+        self.assertIsInstance(self.user, User, 'User not created')
+
