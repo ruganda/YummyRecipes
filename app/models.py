@@ -58,6 +58,37 @@ class Recipe:
     
     def __init__(self, recipe):
         self.recipe = recipe
+
+class repository(object):
+    
+    def __init__(self):
+        self.users = {}
+        self.recipe_categories ={}
+
+    def commit_user(self,user):
+        self.users[user.username] = user 
+
+    def get_user(self,username):
+
+        return  self.users[username]  
+
+    def get_all_users(self):
+        
+        return self.users
+
+    def commit_recipe_category(self,user):
+        self.user[user.username] = user 
+
+    def get_recipe_category(self,username):
+
+        return  self.users[username]  
+
+    def get_all_recipe_categories(self):
+        
+        recipe_category=[v for v in self.recipe_categories.itervalues()]
+        
+        return recipe_category
+
     
     
 
