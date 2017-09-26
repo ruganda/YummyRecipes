@@ -23,4 +23,7 @@ class User:
             return "recipe_category deleted"
         return "recipe_category not found"
 
-
+    def view_recipe_category(self,item):
+        for item in self.recipe_categories:
+            return self.recipe_categories
+        return "recipe_categories is empty"
