@@ -44,6 +44,11 @@ class Recipe_category:
             self.recipes= [newrecipe for oldrecipe in self.recipes]
             return "recipe added successfully"
         return "no recipe to edit"
+    def delete_recipe(self,recipe):
+        if recipe in self.recipes:
+            self.recipes.remove(recipe)
+            return "recipe deleted"
+        return "No recipe to delete"
 
 
 
