@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Yummies</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,7 +13,18 @@
 <body>
 
     <div class="container">
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="home.html">Logout</a>
+                </div>
+
+            </div>
+        </nav>
+        <br>
         <h2>Recipe Categories</h2>
+
         <div class="panel-group">
             <div class="panel panel-primary">
 
@@ -21,9 +32,10 @@
 
                 <div class="panel-body">
                     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#myModal">Add Category</button>
+
                     <hr>
                     <ul class="list-group">
-                        <li class="list-group-item">Drinks</li>
+                        <li class="list-group-item"><a href="recipes.html">Drinks</a></li>
                         <li class="list-group-item">Lunch</li>
                         <li class="list-group-item ">Dessert</li>
                         <li class="list-group-item">Supper</li>
@@ -49,7 +61,8 @@
                             </div>
 
                         </div>
-                    </div> <!-- End of modal -->
+                    </div>
+                    <!-- End of modal -->
                 </div>
             </div>
             <div class="panel-body">
