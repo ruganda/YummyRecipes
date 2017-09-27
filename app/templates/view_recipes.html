@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  
+<div class="container">
+    
+            <h2>Recipes</h2>
+    
+            <div class="panel-group">
+                <div class="panel panel-primary">
+    
+                    <div class="panel-heading">Recipes</div>
+    
+                    <div class="panel-body">
+        
+                        <a class="btn btn-success" href="/add_recipe"> Add recipe</a>
+                        <hr>
+                        <ul class="list-group">
+                            {% for item in items %}
+                            <li class="list-group-item"><a href="/recipe_details">{{ item }}</a> <small><a href="{{ url_for('remove_item', name=item) }}">[Remove]</a></small>
+                            </a> <small><a href="{{ url_for('remove_item', name=item) }}">[edit]</a></small></li>
+                            {% endfor %}
+                        
+                        </ul>
+    
+                        
+                    </div>
+                </div>
+            <div class="panel-body">
+                    <ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    </ul>
+    
+                </div>
+    
+    
+            </div>
+            <!-- End of panel -->
+    
+            <!-- Modal -->
+            <!-- Modal -->
+            <!-- Modal -->
+    
+    
+        </div>
+{% endblock %}
+
+
