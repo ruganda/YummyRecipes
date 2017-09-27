@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Rcipe categories</h1>
+<form method="POST">
+  <input type="text" name="item">
+  <input type="submit" value="Add to category">
+</form>
+<ul>
+  {% for item in items %}
+    <li><a href="{{url_for(view_recipe)}}">{{ item }} <small><a href="{{ url_for('remove_item', name=item) }}">[Remove]</a></small>
+    <a href="{{url_for(view_recipe)}}">{{ item }} <small><a href="{{ url_for('remove_item', name=item) }}">[edit]</a></small></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
