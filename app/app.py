@@ -123,8 +123,6 @@ def add_details():
 
 
 
-
-
 if __name__ == '__main__':
     app.secret_key='sfxhecygdzfzrettzxgvbdsjdbshbv123'
     app.run(debug=True)
