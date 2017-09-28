@@ -1,6 +1,7 @@
 from flask import Flask, render_template,g, flash, redirect, url_for, session, request, logging
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from models import User,Recipe_category,Recipe,repository
+from passlib.hash import sha256_crypt
 
 USERS= []
 recipe_categories =["dinner","supper","lunch"]
@@ -35,7 +36,7 @@ def register():
         name = form.name.data
         email = form.email.data
         username = form.username.data
-        password = form.password.data
+        password = str(form.password.data)
 
         user = User(username, email, password)
         # Commit to DB
@@ -54,18 +55,19 @@ def login():
         username = str(request.form['username'])
         password_candidate = str(request.form['password'])
 
-            # Compare Passwords
-        if (password_candidate, password):
-            # Passed
-            session['logged_in'] = True
-            session['username'] = username
-
-            flash('You are now logged in', 'success')
-            return redirect(url_for('dashboard'))
-        else:
-            error = 'Invalid login'
-            return render_template('login.html', error=error)
+        for user in USERS:
+            if user.username == username and user.password == password_candidate:
+                # Passed
+                session['logged_in'] = True
+                session['username'] = username
+                flash('You are now logged in', 'success')
+                
+                return redirect(url_for('dashboard'))
+            else:
+                error = 'Invalid login'
+                return render_template('login.html', error=error)
     return render_template("login.html")
+        
 
 @app.route('/dashboard')
 def dashboard ():
@@ -98,18 +100,15 @@ def add_recipe():
     global recipes
     if request.method == 'POST':
         recipes.append(request.form['item'])
-        return render_template('view_recipe.html', items=recipes)
-    return render_template('view_recipe.html')
+        return render_template('view_recipes.html', items=recipes)
+    return render_template('add_recipe.html')
 
 @app.route('/delete_recipe/<recipe>')
 def delete_recipe(recipe):
-    global recipe_categories
-    if recipe in recipe_categories:
-        recipe_categories.remove(recipe)
-    return redirect(url_for('view_recipe'))
-@app.route('/details')
-def details():
-    return render_template(details.html)
+    global recipes
+    if recipe in recipes:
+        recipes.remove(recipe)
+    return redirect(url_for('view_recipes'))
 
 @app.route('/details', methods=['GET', 'POST'])
 def add_details():
@@ -119,6 +118,10 @@ def add_details():
         return render_template('detail.html', items=recipes)
     return render_template('add_detail.html')
 
+@app.route('/details')
+def details():
+    all_recipes = []
+    return render_template('details.html', recipes=all_recipes)
 
 
 
