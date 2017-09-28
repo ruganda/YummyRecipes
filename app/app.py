@@ -2,6 +2,7 @@ from flask import Flask, render_template,g, flash, redirect, url_for, session, r
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from models import User,Recipe_category,Recipe,repository
 from passlib.hash import sha256_crypt
+from functools import wraps
 
 USERS= []
 recipe_categories =["dinner","supper","lunch"]
@@ -69,11 +70,22 @@ def login():
     return render_template("login.html")
         
 
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('Unauthorized, Please login', 'danger')
+            return redirect(url_for('login'))
+    return wrap
 @app.route('/dashboard')
+@is_logged_in
 def dashboard ():
     return render_template('dashboard.html', items=recipe_categories)
 
 @app.route('/add_recipe_category', methods=['GET', 'POST'])
+@is_logged_in
 def add_recipe_category():
     global recipe_categories
     if request.method == 'POST':
@@ -83,6 +95,7 @@ def add_recipe_category():
 
 
 @app.route('/remove/<name>')
+@is_logged_in
 def remove_item(name):
     global recipe_categories
     if name in recipe_categories:
@@ -90,12 +103,14 @@ def remove_item(name):
     return redirect(url_for('dashboard'))
 
 @app.route('/view_recipes')
+@is_logged_in
 def view_recipes():
     return render_template('view_recipes.html')
 
 
 
 @app.route('/add_recipe', methods=['GET', 'POST'])
+@is_logged_in
 def add_recipe():
     global recipes
     if request.method == 'POST':
@@ -103,7 +118,9 @@ def add_recipe():
         return render_template('view_recipes.html', items=recipes)
     return render_template('add_recipe.html')
 
+
 @app.route('/delete_recipe/<recipe>')
+@is_logged_in
 def delete_recipe(recipe):
     global recipes
     if recipe in recipes:
@@ -111,6 +128,7 @@ def delete_recipe(recipe):
     return redirect(url_for('view_recipes'))
 
 @app.route('/details', methods=['GET', 'POST'])
+@is_logged_in
 def add_details():
     global recipes
     if request.method == 'POST':
@@ -119,11 +137,19 @@ def add_details():
     return render_template('add_detail.html')
 
 @app.route('/details')
+@is_logged_in
 def details():
     all_recipes = []
     return render_template('details.html', recipes=all_recipes)
 
 
+
+@app.route('/logout')
+@is_logged_in
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
