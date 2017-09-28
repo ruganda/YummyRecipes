@@ -15,30 +15,24 @@ The innovative yummy recipes app is an application that allows users  to create,
 
 Installation
 
-	$ git clone https://github.com/ruganda/YummyRecipes.git
+	$ git clone https://github.com/ruganda/YummyRecipes
 
 Navigate to the root folder
 
+Then navigate to 
 	$ YummyRecipes
 
-Fetch from master
-
-
-	$ git fetch origin master
+Then navigate to the app folder
 
 Setup Virtual Environment
 
 	$ pip install virtualenv
 
-	$ pip install virtualenvwrapper
+	$ virtualenv venv
 
-	$ export WORKHOME=~/Envs```
+you will see (venv) at the beginning of the terminal text
 
-$ source /usr/local/bin/virtualenvwrapper.sh```
-
-	$ mkvirtualenv yummyrecipes
-
-	$ workon yummyrecipes
+	$ workon venv
 
 install the requirements
 
@@ -50,10 +44,20 @@ OR
 
 Provide the flask application environment variable
 
-	$ export FLASK_APP=app.py
+ and then run the serverby;
 
-run the flask server
 
-	$ flask run
-or
     $ python app.py
+  
+  HOSTING.
+  The static site is availabe at:
+  https://ruganda.github.io/index.html 
+   
+   The app is hosted at Heroku
+   
+   
+   Testing.
+   i have used nose2 for test.
+   Navigate into the tests directory .
+      run
+	  $nose2
