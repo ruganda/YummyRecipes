@@ -59,10 +59,11 @@ class Recipe_category:
         return "no recipe found"
 
 class Recipe:
+      
+    def __init__(self, title, description):
+        self.recipe_title = title
+        self.recipe_description = description
 
-    def __init__(self, recipe):
-        self.recipe = recipe
-    
 
 class repository(object):
     
