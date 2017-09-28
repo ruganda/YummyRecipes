@@ -20,7 +20,7 @@ pylint==1.7.2
 
 singledispatch==3.4.0.3
 six==1.11.0
-unity-lens-photos==1.0
+
 virtualenv==15.1.0
 Werkzeug==0.12.2
 wrapt==1.10.11
