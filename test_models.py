@@ -1,5 +1,5 @@
 import unittest
-from app.models import User,Recipe_category,Recipe
+from models import User,Recipe_category,Recipe
 
 class UserTest(unittest.TestCase):
     def setUp(self):
@@ -77,7 +77,8 @@ class Recipe_categoryTest(unittest.TestCase):
 
 class RecipeTest(unittest.TestCase):
     def setUp(self):
-        self.recipe = Recipe("")
+        self.recipe = Recipe("","")
+    
 
 
     def test_create_item_instance(self):

@@ -1,7 +1,6 @@
 from flask import Flask, render_template,g, flash, redirect, url_for, session, request, logging
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from models import User,Recipe_category,Recipe
-from passlib.hash import sha256_crypt
 from functools import wraps
 
 USERS= []
