@@ -5,6 +5,7 @@ CodeClimate (shields.io)
 "CodeClimate")
 
 #food recipe
+
 A food recipe is defined a set of instructions for making or preparing something, especially a food dish. eg a recipe for a cake. 
 
 The challenge of keeping track of awesome food recipes is a need for many individuals who love to cook and eat good food that requires an innovative and robust solution that will allow them to remember recipes and share with others 
@@ -21,8 +22,6 @@ Navigate to the root folder
 
 Then navigate to 
 	$ YummyRecipes
-
-Then navigate to the app folder
 
 Setup Virtual Environment
 
@@ -54,6 +53,8 @@ Provide the flask application environment variable
   https://ruganda.github.io/index.html 
    
    The app is hosted at Heroku
+     
+     https://yummyreciperuganda.herokuapp.com/
    
    
    Testing.
@@ -61,3 +62,22 @@ Provide the flask application environment variable
    Navigate into the tests directory .
       run
 	  $nose2
+	  
+	Author.
+	   @ruganda
+	aknowledgement
+	   @otim22
+	   @Niqneeq
+	   @code-sleuth
+	   
+	  $ SUPERVISED BY: GIDEON GITAU
+	  
+	  
+	  
+	  
+	   
+	   
+	   
+	   
+	   
+	  
