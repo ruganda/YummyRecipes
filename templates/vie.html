@@ -18,7 +18,7 @@
                         <ul class="list-group">
                             {% for item in items %}
                             <li class="list-group-item"><a href="/view_recipes">{{ item }}</a> <small><a href="{{ url_for('remove_item', name=item) }}">[Remove]</a></small>
-                            </a> <small><a href="{{ url_for('remove_item', name=item) }}">[edit]</a></small></li>
+                            </a> <small><a href=#>[edit]</a></small></li>
                             {% endfor %}
                         
                         </ul>
