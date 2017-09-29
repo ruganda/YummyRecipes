@@ -5,7 +5,7 @@ from functools import wraps
 
 USERS= []
 recipe_categories =["dinner","supper","lunch"]
-recipes = []
+recipes = ["matooke","bean"]
 app = Flask(__name__)
 
 class RegisterForm(Form):
