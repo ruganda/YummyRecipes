@@ -1,11 +1,11 @@
 from flask import Flask, render_template,g, flash, redirect, url_for, session, request, logging
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from models import User,Recipe_category,Recipe
+from models import User,Recipe
 from functools import wraps
 
-USERS= []
-recipe_categories =["dinner","supper","lunch"]
-recipes = ["matooke","bean"]
+USERS= {}
+
+recipes = {}
 app = Flask(__name__)
 
 class RegisterForm(Form):
@@ -40,7 +40,7 @@ def register():
 
         user = User(username, email, password)
         # Commit to DB
-        USERS.append(user)
+        USERS[username] = user
 
         flash('You are now registered and can log in', 'success')
         return render_template('login.html')
@@ -55,7 +55,7 @@ def login():
         username = str(request.form['username'])
         password_candidate = str(request.form['password'])
 
-        for user in USERS:
+        for user in USERS.values():
             if user.username == username and user.password == password_candidate:
                 # Passed
                 session['logged_in'] = True
@@ -81,65 +81,48 @@ def is_logged_in(f):
 @app.route('/dashboard')
 @is_logged_in
 def dashboard ():
-    return render_template('dashboard.html', items=recipe_categories)
-
-@app.route('/add_recipe_category', methods=['GET', 'POST'])
-@is_logged_in
-def add_recipe_category():
-    global recipe_categories
-    if request.method == 'POST':
-        recipe_categories.append(request.form['item'])
-        return render_template('dashboard.html', items=recipe_categories)
-    return render_template('add_recipe_category.html')
-
-
-@app.route('/remove/<name>')
-@is_logged_in
-def remove_item(name):
-    global recipe_categories
-    if name in recipe_categories:
-        recipe_categories.remove(name)
-    return redirect(url_for('dashboard'))
-
-@app.route('/view_recipes')
-@is_logged_in
-def view_recipes():
-    return render_template('view_recipes.html')
+    return render_template('dashboard.html', recipes=recipes)
 
 
 
 @app.route('/add_recipe', methods=['GET', 'POST'])
 @is_logged_in
 def add_recipe():
-    global recipes
     if request.method == 'POST':
-        recipes.append(request.form['item'])
-        return render_template('view_recipes.html', items=recipes)
-    return render_template('add_recipe.html')
+        print (request.form['title'])
+        recipes[request.form['title']] = Recipe(request.form['title'],request.form['description'])
+        return render_template('dashboard.html', recipes=recipes)
+    return redirect(url_for('dashboard'))
 
 
-@app.route('/delete_recipe/<recipe>')
+@app.route('/delete_recipe/<title>')
 @is_logged_in
-def delete_recipe(recipe):
+def delete_recipe(title):
     global recipes
-    if recipe in recipes:
-        recipes.remove(recipe)
-    return redirect(url_for('view_recipes'))
+    if title in recipes:
+        del recipes[title]
+    return redirect(url_for('dashboard'))
 
-@app.route('/details', methods=['GET', 'POST'])
-@is_logged_in
-def add_details():
+
+@app.route('/edit_recipe/<title>', methods=['GET', 'POST'])
+
+def edit_recipe(title):
     global recipes
+    recipe = recipes[title]
+
     if request.method == 'POST':
-        recipes.append(request.form['item'])
-        return render_template('detail.html', items=recipes)
-    return render_template('add_detail.html')
+        recipe.recipe_title = request.form['title']
+        recipe.recipe_description = request.form['description']
+        
+        return redirect(url_for('dashboard'))
 
-@app.route('/details')
+    return render_template('edit_recipe.html', title = recipe.recipe_title, description = recipe.recipe_description)
+
+@app.route('/recipe/<title>', methods=['GET', 'POST'])
 @is_logged_in
-def details():
-    all_recipes = []
-    return render_template('details.html', recipes=all_recipes)
+def recipe_details(title):
+    recipe = recipes[title]
+    return render_template("details.html", title=recipe.recipe_title, description=recipe.recipe_description)
 
 
 
