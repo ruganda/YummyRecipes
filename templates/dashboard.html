@@ -1,52 +1,142 @@
-{% extends 'layout.html' %}
-
-{% block body %}
-  
+{% extends 'layout.html' %} {% block body %}
 <div class="container">
-    
-            <h2>Recipe Categories</h2>
-    
-            <div class="panel-group">
-                <div class="panel panel-primary">
-    
-                    <div class="panel-heading">Recipe Categories</div>
-    
-                    <div class="panel-body">
-        
-                        <a class="btn btn-success" href="/add_recipe_category"> Add recipe category</a>
-                        <hr>
-                        <ul class="list-group">
-                            {% for item in items %}
-                            <li class="list-group-item"><a href="/view_recipes">{{ item }}</a> <small><a href="{{ url_for('remove_item', name=item) }}">[Remove]</a></small>
-                            </a> <small><a href=#>[edit]</a></small></li>
-                            {% endfor %}
-                        
-                        </ul>
-    
+
+
+
+    <h2>Recipes</h2>
+
+    <div class="panel-group">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">Recipes</div>
+
+            <div class="panel-body">
+                <form class="form-inline" method="post" action="{{url_for('add_recipe')}}">
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" name="title" id="category" placeholder="Recipe" required>
+                        <input type="textbox" class="form-control" rows="4" name="description" id="category_desc" placeholder="Description" required>
                         
                     </div>
-                </div>
-            <div class="panel-body">
-                    <ul class="pagination">
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul>
-    
-                </div>
-    
-    
+                    <button type="submit" class="btn btn-primary">Add Recipe</button>
+                </form>
+
+
+                <hr>
+                <!-- <ul class="list-group">
+                            <li class="list-group-item"><a href="url_for('view_recipes',recipe_category_title=name)">Drinks</a></li>
+                            
+                        </ul>-->
+
+                        <table class="table table-striped">
+                                <tr>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th><h4>Recipes</h4></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                </tr>
+                                {% set descriptionx = session['description'] %}
+                                {% for name, recipe in recipes.items() %}
+                                   
+                                
+
+                                  <tr>
+                                    <td><a href="{{ url_for('recipe_details', title=name) }}" class="text-muted">
+                                            <h4 class="mb-1">{{ name }}</h4>
+                                        </a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <td>
+                                        <form action="{{ url_for('edit_recipe',title=name) }}" method="get">
+                                        <button type="submit" value="" class="btn btn-default" id="myBtnz" >Edit</button>
+                                      </form>
+                                    </td>
+
+                                    <td>
+                                      <form action="{{ url_for('delete_recipe',title=name) }}" method="get">
+                                       <button type="submit" value="Delete" class="btn btn-danger" id="myBtn" >Delete</button>
+                                      </form>
+                                    </td>
+                                  </tr>
+                                {% endfor %}
+                              </table>
+
+
+
+
+                
+               
+
+
+
+                
             </div>
-            <!-- End of panel -->
-    
-            <!-- Modal -->
-            <!-- Modal -->
-            <!-- Modal -->
-    
-    
+            
         </div>
+        <div class="panel-body">
+            <ul class="pagination">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+
+        </div>
+
+
+    </div>
+    <!-- End of panel -->
+
+
+
+{% for name, description in recipes.items() %}
+ <!-- Modal -->
+ <div class="modal fade" id="myModal{{ loop.index }}" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="color:#0026FF;"><span class="glyphicon glyphicon-edit"></span> Edit Recipe {{loop.index}}</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="POST" >
+                    <div class="form-group">Recipe</label>
+                        <input type="text" class="form-control" id="category" placeholder="Enter Recipe Category">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary " name="title" value="#"><span class="glyphicon glyphicon-edit"></span> Submit Recipe</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit"  id="recipe_category_name{{ loop.index }}" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                <a href="/categories" class="btn text-muted fa fa-times"></a>
+
+            </div>
+        </div>
+    </div>
+</div>
+    
+ 
+  {% endfor %}
+
+
+
+
+
+
+
+
 {% endblock %}
-
-
