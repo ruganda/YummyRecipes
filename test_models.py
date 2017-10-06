@@ -74,20 +74,3 @@ class Recipe_categoryTest(unittest.TestCase):
 
     def test_view_recipe(self):
         self.assertEqual(self.recipes.view_recipe(" "), "no recipe found")
-
-class RecipeTest(unittest.TestCase):
-    def setUp(self):
-        self.recipe = Recipe("","")
-    
-
-
-    def test_create_item_instance(self):
-        self.assertIsInstance(self.recipe, Recipe, "Failed to create instance")
-
-class RepositoryTest(unittest.TestCase):
-    def setUp(self):
-        self.users = {}
-        self.recipe_categories ={}
-
-    def test_repository_instantiation(self):
-        pass
