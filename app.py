@@ -39,7 +39,7 @@ def register():
         password = str(form.password.data)
 
         user = User(username, email, password)
-        # Commit to DB
+        
         USERS[username] = user
 
         flash('You are now registered and can log in', 'success')
@@ -89,7 +89,6 @@ def dashboard ():
 @is_logged_in
 def add_recipe():
     if request.method == 'POST':
-        print (request.form['title'])
         recipes[request.form['title']] = Recipe(request.form['title'],request.form['description'])
         return render_template('dashboard.html', recipes=recipes)
     return redirect(url_for('dashboard'))
